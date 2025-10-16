@@ -111,12 +111,12 @@
       background: #fafafa;
     }
 
-    .config-page {
+    .confige-page {
       max-width: 600px;
       width: 100%;
     }
 
-    .config-form {
+    .confige-form {
       display: flex;
       flex-direction: column;
       gap: 21px;
@@ -154,7 +154,7 @@
     <div class="login-card">
       <div class="login-left">
         <h1 class="login-title">Welcome to SSO Demo</h1>
-        <button id="config-btn" class="login-button" style="background-color: #34A853;">Configure Settings</button>
+        <button id="confige-btn" class="login-button" style="background-color: #34A853;">configeure Settings</button>
         <button id="login-btn" class="login-button">Go to Login</button>
         <button id="profile-btn" class="login-button" style="background-color: #EA4335;">Go to Profile</button>
         <div id="error" class="login-error hidden"></div>
@@ -162,14 +162,14 @@
     </div>
   </div>
 
-  <!-- CONFIG PAGE -->
-  <div id="config-page" class="login-container hidden">
-    <div class="login-card config-page">
+  <!-- confige PAGE -->
+  <div id="confige-page" class="login-container hidden">
+    <div class="login-card confige-page">
       <div class="login-header">
-        <button id="back-from-config" class="back-button">← Back to Home</button>
-        <h1 class="login-title">Widget Configuration</h1>
+        <button id="back-from-confige" class="back-button">← Back to Home</button>
+        <h1 class="login-title">Widget configeuration</h1>
       </div>
-      <form id="config-form" class="config-form">
+      <form id="confige-form" class="confige-form">
         <div class="form-group">
           <label>Channel Name</label>
           <input type="text" id="channelName" value="toi" required />
@@ -201,7 +201,7 @@
           <input type="text" id="signInCallback" placeholder="Leave empty to disable callback" />
           <small>If provided, this message will be shown on successful login</small>
         </div>
-        <button type="submit" class="login-button" style="width:100%;margin-top:20px;">Save Configuration</button>
+        <button type="submit" class="login-button" style="width:100%;margin-top:20px;">Save configuration</button>
       </form>
     </div>
   </div>
@@ -233,7 +233,7 @@
   <script>
     const pages = {
       home: document.getElementById('home-page'),
-      config: document.getElementById('config-page'),
+      confige: document.getElementById('confige-page'),
       login: document.getElementById('login-page'),
       profile: document.getElementById('profile-page')
     };
@@ -243,7 +243,7 @@
       pages[name].classList.remove('hidden');
     };
 
-    const config = {
+    const confige = {
       channelName: 'toi',
       googleClientId: '103703403489-b4t4lt8mr05brqpcdrmsu0di54cmjv4f.apps.googleusercontent.com',
       ru: '',
@@ -252,21 +252,21 @@
       signInCallback: ''
     };
 
-    document.getElementById('config-btn').onclick = () => showPage('config');
+    document.getElementById('confige-btn').onclick = () => showPage('confige');
     document.getElementById('login-btn').onclick = handleLoginClick;
     document.getElementById('profile-btn').onclick = handleProfileClick;
-    document.getElementById('back-from-config').onclick = () => showPage('home');
+    document.getElementById('back-from-confige').onclick = () => showPage('home');
     document.getElementById('back-from-login').onclick = () => showPage('home');
     document.getElementById('back-from-profile').onclick = () => showPage('home');
 
-    document.getElementById('config-form').onsubmit = (e) => {
+    document.getElementById('confige-form').onsubmit = (e) => {
       e.preventDefault();
-      config.channelName = document.getElementById('channelName').value;
-      config.googleClientId = document.getElementById('googleClientId').value;
-      config.ru = document.getElementById('ru').value;
-      config.showSuccessScreen = document.getElementById('showSuccessScreen').value === 'true';
-      config.GISPlusFedcmEnabled = document.getElementById('GISPlusFedcmEnabled').value === 'true';
-      config.signInCallback = document.getElementById('signInCallback').value;
+      confige.channelName = document.getElementById('channelName').value;
+      confige.googleClientId = document.getElementById('googleClientId').value;
+      confige.ru = document.getElementById('ru').value;
+      confige.showSuccessScreen = document.getElementById('showSuccessScreen').value === 'true';
+      confige.GISPlusFedcmEnabled = document.getElementById('GISPlusFedcmEnabled').value === 'true';
+      confige.signInCallback = document.getElementById('signInCallback').value;
       showPage('home');
     };
 
@@ -299,17 +299,17 @@
         loadScript('https://jssocdnstg.indiatimes.com/crosswalk/217/widget/index.main.umd.js', () => {
           waitForWidget('ssoWidget', () => {
             try {
-              const widgetConfig = {
-                channelName: config.channelName,
+              const widgetconfige = {
+                channelName: confige.channelName,
                 element: 'ssoLogin',
-                ru: config.ru,
-                showSuccessScreen: config.showSuccessScreen,
-                GISPlusFedcmEnabled: config.GISPlusFedcmEnabled
+                ru: confige.ru,
+                showSuccessScreen: confige.showSuccessScreen,
+                GISPlusFedcmEnabled: confige.GISPlusFedcmEnabled
               };
-              if (config.signInCallback.trim()) {
-                widgetConfig.signInCallback = () => alert(config.signInCallback);
+              if (confige.signInCallback.trim()) {
+                widgetconfige.signInCallback = () => alert(confige.signInCallback);
               }
-              window.ssoWidget('init', widgetConfig);
+              window.ssoWidget('init', widgetconfige);
             } catch (err) {
               alert('Error initializing login widget');
             }
@@ -324,7 +324,7 @@
         loadScript('https://jssocdnstg.indiatimes.com/crosswalk/217/widget/index.main.umd.js', () => {
           waitForWidget('ssoProfileWidget', () => {
             try {
-              const profileConfig = {
+              const profileconfige = {
                 channel: 'toi',
                 staticUrl: 'https://jssocdnstg.indiatimes.com/crosswalk/217/widget',
                 nonLoggedInRu: 'https://jssodev.indiatimes.com/sso/identity/login?channel=toi',
@@ -333,7 +333,7 @@
                 element: 'ssoprofileWidgetMain'
               };
               setTimeout(() => {
-                window.ssoProfileWidget.init(profileConfig);
+                window.ssoProfileWidget.init(profileconfige);
                 window.ssoProfileWidget.open();
               }, 1000);
             } catch (err) {
